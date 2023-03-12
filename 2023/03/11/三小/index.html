@@ -1,155 +1,85 @@
 <!DOCTYPE html>
-<html>
-<meta  lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#fff" id="theme-color">
-  <link rel="icon" href="/img/Kaze.png">
-  <title>theme-kaze demo</title>
-  <script>
-    // control reverse button
-    var reverseDarkList = {
-      dark: 'light',
-      light: 'dark'
-    };
-    var themeColor = {
-      dark: '#1c1c1e',
-      light: '#fff'
-    }
-    // get the data of css prefers-color-scheme
-    var getCssMediaQuery = function() {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
-    // reverse current darkmode setting function
-    var reverseDarkModeSetting = function() {
-      var setting = localStorage.getItem('user-color-scheme');
-      if(reverseDarkList[setting]) {
-        setting = reverseDarkList[setting];
-      } else if(setting === null) {
-        setting = reverseDarkList[getCssMediaQuery()];
-      } else {
-        return;
-      }
-      localStorage.setItem('user-color-scheme', setting);
-      return setting;
-    };
-    // apply current darkmode setting
-    var setDarkmode = function(mode) {
-      var setting = mode || localStorage.getItem('user-color-scheme');
-      if(setting === getCssMediaQuery()) {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[setting];
-      } else if(reverseDarkList[setting]) {
-        document.documentElement.setAttribute('data-user-color-scheme', setting);
-        document.getElementById('theme-color').content = themeColor[setting];
-      } else {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
-      }
-    };
-    setDarkmode();
-  </script>
-  <script>
-    function loadScript(url, cb) {
-      var script = document.createElement('script');
-      script.src = url;
-      if (cb) script.onload = cb;
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  </script>
-  
-  <link rel="preload" href="//at.alicdn.com/t/font_1946621_vpj3dq9ceqa.css" as="style" >
-  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
-  
-  <link rel="preload" href="//cdn.jsdelivr.net/npm/fslightbox@3.1.0/index.min.js" as="script">
-  
-  
-  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
-  
-  
-  
-  
-  
-  
-  
-  
-<link rel="stylesheet" href="/css/main.css">
-
-  
-  
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_vpj3dq9ceqa.css">
-
-  
-  
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
-
-  
-  
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-
-<body>
-  <div class="wrapper">
-    
-    <nav class="navbar">
-  <div class="navbar-logo">
-    <span class="navbar-logo-main">
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
       
-      <img class="navbar-logo-img" src="/img/Kaze.png">
+        三小 | Dumb fox
       
-      <span class="navbar-logo-dsc">theme-kaze demo</span>
-    </span>
-  </div>
-  <div class="navbar-menu">
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
     
-    <a href="/" class="navbar-menu-item">Home </a>
-    
-    <a href="/archives" class="navbar-menu-item">Archive </a>
-    
-    <a href="/tags" class="navbar-menu-item">Tags </a>
-    
-    <a href="/categories" class="navbar-menu-item">Categories </a>
-    
-    <a href="/about" class="navbar-menu-item">About </a>
-    
-    <a href="/links" class="navbar-menu-item">Friends </a>
-    
-    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
-  </div>
-</nav>
-    
-    <div class="section-wrap">
-      <div class="container">
-        <div class="columns">
-          <main class="main-column">
-<article class="card card-content">
-  <header>
-    <h1 class="post-title">
-      三小
-    </h1>
-  </header>
-  <div class="post-meta post-show-meta">
-    <time datetime="2023-03-11T09:05:33.000Z" style="display: flex; align-items: center;">
-      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
-      <span>2023-03-11</span>
-    </time>
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
     
     
-    <span class="dot"></span>
-    <span>5.8k words</span>
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
     
-  </div>
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
   
-  </header>
-  <div id="section" class="post-content">
-    <p>组队人员选取模式</p>
+
+  <meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo">
+          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            
+              <a class="nav-menu-item" href="/page1">工作区</a>
+            
+              <a class="nav-menu-item" href="/page2">价目表</a>
+            
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">三小</div>
+        <div class="post-info">
+          
+  
+
+
+          <span class="post-date">2023-03-11</span>
+        </div>
+      </div>
+      <div class="post-content__body">
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>组队人员选取模式</p>
 <ol>
 <li>推荐式组队</li>
 <li>按班排组队</li>
@@ -371,223 +301,158 @@
 <li>用户社区功能：该功能可以让用户之间相互分享学习心得、交流学习方法，共同提高学习效果。用户还可以在社区中进行挑战赛，增加学习乐趣，提高学习兴趣。</li>
 </ol>
 
-  </div>
-  <div>
-  
-  <div class="post-note note-warning copyright" style="margin-top: 42px">
-    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/about">theme-kaze</a></p>
-    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="http://example.com/2023/03/11/%E4%B8%89%E5%B0%8F/">http://example.com/2023/03/11/%E4%B8%89%E5%B0%8F/</a></p>
-    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
-  </div>
-  
-  </div>
-</article>
-<div class="nav">
-  
-  
-  <div class="nav-item-next">
-    <a href="/2023/03/11/hello-world/" class="nav-link">
-      <div>
-        <div class="nav-label">Next</div>
-        
-        <div class="nav-title">Hello World </div>
-        
       </div>
-      <i class="iconfont icon-right nav-next-icon"></i>
-    </a>
-  </div>
-  
-</div>
-
-<div class="card card-content toc-card" id="mobiletoc">
-  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
-
-</div></main>
-          <aside class="left-column">
-            
-            <div class="card card-author">
-              
-<img src="/img/Kaze.png" class="author-img">
-
-<p class="author-name">theme-kaze</p>
-<p class="author-description">designed by theme-kaze</p>
-<div class="author-message">
-  <a class="author-posts-count" href="/archives">
-    <span>2</span>
-    <span>Posts</span>
-  </a>
-  <a class="author-categories-count" href="/categories">
-    <span>0</span>
-    <span>Categories</span>
-  </a>
-  <a class="author-tags-count" href="/tags">
-    <span>0</span>
-    <span>Tags</span>
-  </a>
-</div>
-
-            </div>
-            
-            <div class="sticky-tablet">
-  
-  
-  <article class="display-when-two-columns spacer">
-    <div class="card card-content toc-card">
-      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
-
     </div>
   </article>
-  
-  
-  <article class="card card-content">
-    <div class="categories-card">
-  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>Categories</div>
-  <div class="categories-list">
+  <div class="post__foot">
     
+      <div class="like-author">
+  <input type="checkbox" id="likeCode" />
+  <div class="author-face">
+    <img height="100px"
+         width="100px"
+         id="front-face"
+         alt="author face"
+         src="/images/pay.jpg"/>
+    <img height="100px"
+         width="100px"
+         id="back-face"
+         alt="like code"
+         src="/images/pay.jpg"/>
   </div>
+  <div class="like-text">“请作者喝杯咖啡”</div>
+  <label for="likeCode" class="like-btn">
+    <svg viewBox="0 0 1024 1024"
+         width="20px"
+         style="margin-right: 10px"
+         height="20px">
+      <path d="M466.88 908.96L113.824 563.296a270.08 270.08 0 0 1 0-387.392c108.8-106.56 284.896-106.56 393.696 0 1.504 1.472 2.976 2.944 4.448 4.48 1.472-1.536 2.944-3.008 4.448-4.48 108.8-106.56 284.896-106.56 393.696 0a269.952 269.952 0 0 1 34.016 347.072l-387.392 385.6a64 64 0 0 1-89.92 0.384z" p-id="13650" fill="#ee4242"/>
+    </svg>
+    喜欢作者
+  </label>
 </div>
-  </article>
-  
-  <article class="card card-content">
-    <div class="tags-card">
-  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>hot tags</div>
-  <div class="tags-list">
-    
-  </div>
-</div>
-  </article>
-  
-  
-</div>
-          </aside>
-          <aside class="right-column">
-            <div class="sticky-widescreen">
-  
-  
-  <article class="card card-content toc-card">
-    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>TOC</div>
 
-  </article>
-  
-  
-  <article class="card card-content">
-    <div class="recent-posts-card">
-  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>Recent Posts</div>
-  <div class="recent-posts-list">
     
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2023-03-11</div>
-        <a href="/2023/03/11/三小/"><div class="recent-posts-item-content">三小</div></a>
+    <div class="post-nav">
+  
+    <div class="post-nav-item-left"></div>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2023/03/11/hello-world/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
       </div>
+      Hello World
+    </a>
+  
+</div>
+
     
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2023-03-11</div>
-        <a href="/2023/03/11/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
-      </div>
     
   </div>
-</div>
-  </article>
-  
-  
-</div>
-          </aside>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">麻</div><div class="matts">雀</div><div class="matts">吃</div><div class="matts">草</div><div class="matts">莓</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">雀</div><div class="matts">食</div><div class="matts">莓</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:463882408@qq.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-wx.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI3NzQ4NDkzNg==&mid=2247484469&idx=1&sn=8a442bb67397f52cce5c38c3f9b41e36&chksm=eb64c0d2dc1349c40d2e1bb55615ae28b3f2951be22f00717b9ade98c851082e42dc666ab45d#rd">微信公众号</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:463882408@qq.com">463882408@qq.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="http://example.com">Dumb fox</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
         </div>
       </div>
     </div>
-  </div>
+    
+    
   
-  <footer class="footer">
-  <div class="footer-container">
-    <div>
-      <div class="footer-dsc">
-        <span>Copyright ©
-          
-          2020 -
-          
-          2023
-        </span>
-        <a href="/" class="footer-link">theme-kaze demo </a>
-      </div>
-    </div>
 
-    
-    <div class="footer-dsc">
-      
-      
-      Powered by
-      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
-      
-      
-      <span>&nbsp;|&nbsp;</span>
-      
-      
-      
-      Theme -
-      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
-        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
-      
-    </div>
-    
-    
-    
-    
-</footer>
-  <a role="button" id="scrollbutton" class="basebutton" >
-  <i class="iconfont icon-arrowleft button-icon"></i>
-</a>
-<a role="button" id="menubutton" class="basebutton">
-  <i class="iconfont icon-menu button-icon"></i>
-</a>
-<a role="button" id="popbutton" class="basebutton">
-  <i class="iconfont icon-expand button-icon"></i>
-</a>
-<a role="button" id="darkbutton" class="basebutton darkwidget">
-  <i class="iconfont icon-weather button-icon"></i>
-</a>
-
-  
-  
-  
-  <script>
-  var addImgLayout = function () {
-    var img = document.querySelectorAll('.post-content img');
-    var i;
-    for (i = 0; i < img.length; i++) {
-      var wrapper = document.createElement('a');
-      wrapper.setAttribute('data-fslightbox', 'gallery');
-      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
-      wrapper.setAttribute('style', 'width: 100%; display: flex; justify-content: center;');
-      img[i].parentElement.insertBefore(wrapper, img[i]);
-      wrapper.appendChild(img[i]);
-    }
-    refreshFsLightbox();
-  }
-</script>
-<script>loadScript("//cdn.jsdelivr.net/npm/fslightbox@3.1.0/index.min.js", addImgLayout)</script>
-  
-  
-  
-<script src="/js/main.js"></script>
-
-  
-  
-  <script>
-    var addLazyload = function () {
-      var observer = lozad('.lozad', {
-        load: function (el) {
-          el.srcset = el.getAttribute('data-src');
-        },
-        loaded: function (el) {
-          el.classList.add('loaded');
-        }
-      });
-      observer.observe();
-    }
-  </script>
-  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
-  
-  
-</body>
-
+  </body>
 </html>
