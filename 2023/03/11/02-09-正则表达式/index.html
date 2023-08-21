@@ -1,0 +1,2078 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="正则表达式, Dumb fox">
+    <meta name="description" content="? 通配符匹配文件名中的 0 个或 1 个字符，而 ***** 通配符匹配零个或多个字符。
+data(\w)?\.dat   将查找下列文件：
+data.dat
+data1.dat
+data2.dat
+datax.dat
+dataN.dat">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>正则表达式 | Dumb fox</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Dumb fox</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>主页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Dumb fox</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			主页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blessonism" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blessonism" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">正则表达式</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%9D%82%E8%AE%B0/">
+                                <span class="chip bg-color">杂记</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-03-11
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-06-16
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    9.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    37 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>?</strong> 通配符匹配文件名中的 0 个或 1 个字符，而 ***** 通配符匹配零个或多个字符。</p>
+<p>data(\w)?\.dat   将查找下列文件：</p>
+<pre class="line-numbers language-none"><code class="language-none">data.dat
+data1.dat
+data2.dat
+datax.dat
+dataN.dat<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>data.*\.dat   匹配下列所有文件：</p>
+<pre class="line-numbers language-none"><code class="language-none">data.dat
+data1.dat
+data2.dat
+data12.dat
+datax.dat
+dataXYZ.dat<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>模式（pattern）</p>
+<ul>
+<li><strong>runoo+b</strong>，可以匹配 <strong>runoob、runooob、runoooooob</strong> 等，**+** 号代表前面的字符必须至少出现一次（1次或多次）。</li>
+<li><strong>runoo*b</strong>，可以匹配 <strong>runob、runoob、runoooooob</strong> 等，***** 号代表前面的字符可以不出现，也可以出现一次或者多次（0次、或1次、或多次）。</li>
+<li><strong>colou?r</strong> 可以匹配 <strong>color</strong> 或者 <strong>colour</strong>，**?** 问号代表前面的字符最多只可以出现一次（0次或1次）。</li>
+</ul>
+<h2 id="普通字符"><a href="#普通字符" class="headerlink" title="普通字符"></a>普通字符</h2><table>
+<thead>
+<tr>
+<th>字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>[ABC]</strong></td>
+<td align="left">匹配 <strong>[…]</strong> 中的所有字符，例如 <strong>[aeiou]</strong> 匹配字符串 “google runoob taobao” 中所有的 e o u a 字母。</td>
+</tr>
+<tr>
+<td><strong>[^ABC]</strong></td>
+<td align="left">匹配除了 <strong>[…]</strong> 中字符的所有字符，例如 <strong>[^aeiou]</strong> 匹配字符串 “google runoob taobao” 中除了 e o u a 字母的所有字母。</td>
+</tr>
+<tr>
+<td><strong>[A-Z]</strong></td>
+<td align="left">[A-Z] 表示一个区间，匹配所有大写字母，[a-z] 表示所有小写字母。</td>
+</tr>
+<tr>
+<td><strong>.</strong></td>
+<td align="left">匹配除换行符（\n、\r）之外的任何单个字符，相当于[^\n\r] 。</td>
+</tr>
+<tr>
+<td><strong>[\s\S]</strong></td>
+<td align="left">匹配所有。\s 是匹配所有空白符，包括换行，\S 非空白符，不包括换行。</td>
+</tr>
+<tr>
+<td><strong>\w</strong></td>
+<td align="left">匹配字母、数字、下划线。等价于 [A-Za-z0-9_]</td>
+</tr>
+</tbody></table>
+<h2 id="非打印字符"><a href="#非打印字符" class="headerlink" title="非打印字符"></a>非打印字符</h2><p>非打印字符也可以是正则表达式的组成部分。下表列出了表示非打印字符的转义序列：</p>
+<table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">\cx</td>
+<td align="left">匹配由x指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 ‘c’ 字符。</td>
+</tr>
+<tr>
+<td align="left">\f</td>
+<td align="left">匹配一个换页符。等价于 \x0c 和 \cL。</td>
+</tr>
+<tr>
+<td align="left">\n</td>
+<td align="left">匹配一个换行符。等价于 \x0a 和 \cJ。</td>
+</tr>
+<tr>
+<td align="left">\r</td>
+<td align="left">匹配一个回车符。等价于 \x0d 和 \cM。</td>
+</tr>
+<tr>
+<td align="left">\s</td>
+<td align="left">匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。注意 Unicode 正则表达式会匹配全角空格符。</td>
+</tr>
+<tr>
+<td align="left">\S</td>
+<td align="left">匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td align="left">匹配一个制表符(Tab)。等价于 \x09 和 \cI。</td>
+</tr>
+<tr>
+<td align="left">\v</td>
+<td align="left">匹配一个垂直制表符。等价于 \x0b 和 \cK。</td>
+</tr>
+</tbody></table>
+<h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><p>所谓特殊字符，就是一些有特殊含义的字符，如上面说的 <strong>runoo*b</strong> 中的 *****，简单的说就是表示任何字符串的意思。如果要查找字符串中的 ***** 符号，则需要对 ***** 进行转义，即在其前加一个 <em>***，**runo*ob</em>* 匹配字符串 <strong>runo*ob</strong>。</p>
+<p>许多元字符要求在试图匹配它们时特别对待。若要匹配这些特殊字符，必须首先使字符”转义”，即，将反斜杠字符*<em>*</em> 放在它们前面。下表列出了正则表达式中的特殊字符：</p>
+<table>
+<thead>
+<tr>
+<th align="left">特别字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$</td>
+<td align="left">匹配输入字符串的结尾位置。如果设置了 RegExp 对象的 Multiline 属性，则 $ 也匹配 ‘\n’ 或 ‘\r’。要匹配 $ 字符本身，请使用 \$。</td>
+</tr>
+<tr>
+<td align="left">( )</td>
+<td align="left">标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。要匹配这些字符，请使用 \( 和\ )。</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">匹配前面的子表达式零次或多次。要匹配 * 字符，请使用\ *。</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">匹配前面的子表达式至少一次或多次。要匹配 + 字符，请使用 \+。</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td align="left">匹配除换行符 \n 之外的任何单字符。要匹配 . ，请使用 \. 。</td>
+</tr>
+<tr>
+<td align="left">[</td>
+<td align="left">标记一个中括号表达式的开始。要匹配 [，请使用 \[。</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?。</td>
+</tr>
+<tr>
+<td align="left">\</td>
+<td align="left">将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如， ‘n’ 匹配字符 ‘n’。’\n’ 匹配换行符。序列 ‘\\‘ 匹配 “\“，而 ‘\(‘ 则匹配 “(“。</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">匹配输入字符串的开始位置，除非在方括号表达式中使用，当该符号在方括号表达式中使用时，表示不接受该方括号表达式中的字符集合。要匹配 ^ 字符本身，请使用 ^。</td>
+</tr>
+<tr>
+<td align="left">{</td>
+<td align="left">标记限定符表达式的开始。要匹配 {，请使用 \{。</td>
+</tr>
+<tr>
+<td align="left">|</td>
+<td align="left">指明两项之间的一个选择。要匹配 |，请使用 \</td>
+</tr>
+</tbody></table>
+<h2 id="非贪婪匹配（regex默认为贪婪）"><a href="#非贪婪匹配（regex默认为贪婪）" class="headerlink" title="非贪婪匹配（regex默认为贪婪）"></a>非贪婪匹配（regex默认为贪婪）</h2><h3 id="Lazy-Matching"><a href="#Lazy-Matching" class="headerlink" title="Lazy Matching"></a>Lazy Matching</h3><blockquote>
+<p>Lazy matchmaking, unlike greedy matching, stops at the first matching. </p>
+<p>For example, in the example below, add a ? after * to find the first match that ends with the letter r and is preceded by any character. </p>
+<p>It means that this match will stop at the first letter r.</p>
+</blockquote>
+<h2 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h2><p>限定符用来指定正则表达式的一个给定组件必须要出现多少次才能满足匹配。有 ***** 或 <strong>+</strong> 或 <strong>?</strong> 或 <strong>{n}</strong> 或 <strong>{n,}</strong> 或 <strong>{n,m}</strong> 共6种。</p>
+<p>正则表达式的限定符有：</p>
+<table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">*</td>
+<td align="left">匹配前面的子表达式零次或多次。例如，<strong>zo*</strong> 能匹配 <strong>“z”</strong> 以及 <strong>“zoo”<strong>。</strong></strong>* 等价于 **{0,}**。</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">匹配前面的子表达式一次或多次。例如，<strong>zo+</strong> 能匹配 <strong>“zo”</strong> 以及 “**zoo”**，但不能匹配 <strong>“z”<strong>。</strong>+</strong> 等价于 **{1,}**。</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">匹配前面的子表达式零次或一次。例如，<strong>do(es)?</strong> 可以匹配 <strong>“do”</strong> 、 <strong>“does”<strong>、 <strong>“doxy”</strong> 中的 <strong>“do”</strong> 。</strong>?</strong> 等价于 **{0,1}**。<img src="https://www.runoob.com/wp-content/uploads/2014/03/CA742DA3-826D-463B-85F5-316DAB3515C1.jpeg" alt="img"></td>
+</tr>
+<tr>
+<td align="left">{n}</td>
+<td align="left">n 是一个非负整数。匹配确定的 <strong>n</strong> 次。例如，<strong>o{2}</strong> 不能匹配 <strong>“Bob”</strong> 中的 <strong>o</strong>，但是能匹配 <strong>“food”</strong> 中的两个 <strong>o</strong>。</td>
+</tr>
+<tr>
+<td align="left">{n,}</td>
+<td align="left">n 是一个非负整数。至少匹配n 次。例如，<strong>o{2,}</strong> 不能匹配 <strong>“Bob”</strong> 中的 <strong>o</strong>，但能匹配 <strong>“foooood”</strong> 中的所有 <strong>o</strong>。<strong>o{1,}</strong> 等价于 <strong>o+<strong>。</strong>o{0,}</strong> 则等价于 **o***。</td>
+</tr>
+<tr>
+<td align="left">{n,m}</td>
+<td align="left">m 和 n 均为非负整数，其中 n &lt;&#x3D; m。最少匹配 n 次且最多匹配 m 次。例如，<strong>o{1,3}</strong> 将匹配 <strong>“fooooood”</strong> 中的前三个 <strong>o</strong>。<strong>o{0,1}</strong> 等价于 **o?**。请注意在逗号和两个数之间不能有空格。</td>
+</tr>
+</tbody></table>
+<p>以下正则表达式匹配一个正整数，**[1-9]<strong>设置第一个数字不是 0，</strong>[0-9]*** 表示任意多个数字：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;[1-9][0-9]*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/F249891D-F3D9-48D5-A3CB-6FD8FD029117.jpg" alt="img"></p>
+<p>请注意，限定符出现在范围表达式之后。因此，它应用于整个范围表达式，在本例中，只指定从 0 到 9 的数字（包括 0 和 9）。</p>
+<p>这里不使用 + 限定符，因为在第二个位置或后面的位置不一定需要有一个数字（可为个位数）。也不使用 ? 字符，因为使用 ? 会将整数限制到只有两位数。</p>
+<p>如果你想设置 0~99 的两位数，可以使用下面的表达式来至少指定一位但至多两位数字。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;[0-9]&#123;1,2&#125;&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>上面的表达式的缺点是，只能匹配两位数字，而且可以匹配 0、00、01、10 99 的章节编号仍只匹配开头两位数字。</p>
+<p>改进下，匹配 1~99 的正整数表达式如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;[1-9][0-9]?&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>或</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;[1-9][0-9]&#123;0,1&#125;&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<p><strong>和 + 限定符都是<u>贪婪</u>的，因为它们会尽可能多的匹配文字，只有在它们的后面加上一个 ? 就可以实现<u>非贪婪或最小匹配</u>。</strong></p>
+<p>例如，您可能搜索 HTML 文档，以查找在 <strong>h1</strong> 标签内的内容。HTML 代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;h1&gt;RUNOOB-菜鸟教程&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>贪婪：</strong>下面的表达式匹配从开始小于符号 (&lt;) 到关闭 h1 标记的大于符号 (&gt;) 之间的所有内容。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&lt;.*&gt;&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/AD8F3320-2F2E-4513-9BB5-84450D62783D.jpg" alt="img"></p>
+<p><strong>非贪婪：</strong>如果您只需要匹配开始和结束 h1 标签，下面的非贪婪表达式只匹配 <h1>。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&lt;.*?&gt;&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/A6E72665-CE61-46F4-A72B-A34BC13F5820.jpg" alt="img"></p>
+<p>也可以使用以下正则表达式来匹配 h1 标签，表达式则是：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&lt;\w+?&gt;&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/C6E89F76-D059-4600-A507-74C42306A790.jpg" alt="img"></p>
+<p>通过在 *<strong><strong>、</strong>+</strong> 或 <strong>?</strong> 限定符之后放置 **?**，<u>该表达式从”贪婪”表达式转换为”非贪婪”表达式或者最小匹配</u>。</p>
+<h2 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h2><p>定位符使您能够将正则表达式固定到行首或行尾。它们还使您能够创建这样的正则表达式，这些正则表达式出现在一个单词内、在一个单词的开头或者一个单词的结尾。</p>
+<p>定位符用来描述字符串或单词的边界，<strong>^</strong> 和 <strong>$</strong> 分别指字符串的开始与结束，<strong>\b</strong> 描述单词的前或后边界，<strong>\B</strong> 表示非单词边界。</p>
+<p>正则表达式的定位符有：</p>
+<table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">^</td>
+<td align="left">匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与 \n 或 \r 之后的位置匹配。</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="left">匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与 \n 或 \r 之前的位置匹配。</td>
+</tr>
+<tr>
+<td align="left">\b</td>
+<td align="left">匹配一个单词边界，即字与空格间的位置。</td>
+</tr>
+<tr>
+<td align="left">\B</td>
+<td align="left">非单词边界匹配。</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong>：不能将限定符与定位符一起使用。由于在紧靠换行或者单词边界的前面或后面不能有一个以上位置，因此不允许诸如 <strong>^*</strong> 之类的表达式。</p>
+<p>若要匹配一行文本开始处的文本，请在正则表达式的开始使用 <strong>^</strong> 字符。不要将 <strong>^</strong> 的这种用法与中括号表达式内的用法混淆。</p>
+<p>若要匹配一行文本的结束处的文本，请在正则表达式的结束处使用 <strong>$</strong> 字符。</p>
+<p>若要在搜索章节标题时使用定位点，下面的正则表达式匹配一个章节标题，该标题只包含两个尾随数字，并且出现在行首：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;^Chapter [1-9][0-9]&#123;0,1&#125;&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>真正的章节标题不仅出现行的开始处，而且它还是该行中仅有的文本。它既出现在行首又出现在同一行的结尾。下面的表达式能确保指定的匹配只匹配章节而不匹配交叉引用。通过创建只匹配一行文本的开始和结尾的正则表达式，就可做到这一点。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;^Chapter [1-9][0-9]&#123;0,1&#125;$&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>匹配单词边界稍有不同，但向正则表达式添加了很重要的能力。单词边界是单词和空格之间的位置。非单词边界是任何其他位置。下面的表达式匹配单词 Chapter 的开头三个字符，因为这三个字符出现在单词边界后面：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;\bCha&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>\b</strong> 字符的位置是非常重要的。如果它位于要匹配的字符串的开始，它在单词的开始处查找匹配项。如果它位于字符串的结尾，它在单词的结尾处查找匹配项。例如，下面的表达式匹配单词 Chapter 中的字符串 ter，因为它出现在单词边界的前面：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;ter\b&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>下面的表达式匹配 Chapter 中的字符串 apt，但不匹配 aptitude 中的字符串 apt：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;\Bapt&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>字符串 apt 出现在单词 Chapter 中的非单词边界处，但出现在单词 aptitude 中的单词边界处。对于 <strong>\B</strong> 非单词边界运算符，不可以匹配单词的开头或结尾，如果是下面的表达式，就不匹配 Chapter 中的 Cha：</p>
+<pre class="line-numbers language-none"><code class="language-none">\BCha<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+<h2 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h2><p>用圆括号 <strong>()</strong> 将所有选择项括起来，相邻的选择项之间用 <strong>|</strong> 分隔。</p>
+<p><strong>()</strong> 表示捕获分组，**()** 会把每个分组里的匹配的值保存起来， 多个匹配值可以通过数字 n 来查看(<strong>n</strong> 是一个数字，表示第 n 个捕获组的内容)。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/366574CC-3706-4B4C-8782-1BFF4CF57582.jpg" alt="img"></p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/82A7298A-2A94-49E3-AA27-A7778EE89711.jpg" alt="img"></p>
+<p>但用圆括号会有一个副作用，使相关的匹配会被缓存，此时可用 <strong>?:</strong> 放在第一个选项前来消除这种副作用。</p>
+<p>其中 <strong>?:</strong> 是非捕获元之一，还有两个非捕获元是 <strong>?&#x3D;</strong> 和 **?!**，这两个还有更多的含义，前者为正向预查，在任何开始匹配圆括号内的正则表达式模式的位置来匹配搜索字符串，后者为负向预查，在任何开始不匹配该正则表达式模式的位置来匹配搜索字符串。</p>
+<p><strong>以下列出 ?&#x3D;、?&lt;&#x3D;、?!、?&lt;! 的使用区别</strong></p>
+<p>**exp1(?&#x3D;exp2)**：查找 exp2 前面的 exp1。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/reg-111.jpg" alt="img"></p>
+<p><strong>(?&lt;&#x3D;exp2)exp1</strong>：查找 exp2 后面的 exp1。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/reg-222.jpg" alt="img"></p>
+<p>**exp1(?!exp2)**：查找后面不是 exp2 的 exp1。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/reg-333.jpg" alt="img"></p>
+<p><strong>(?&lt;!exp2)exp1</strong>：查找前面不是 exp2 的 exp1。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/reg-444.jpg" alt="img"></p>
+<blockquote>
+<p>更多内容可以参考：<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/reg-lookahead-lookbehind.html">正则表达式的先行断言(lookahead)和后行断言(lookbehind)</a></p>
+</blockquote>
+<h2 id="正则表达式-修饰符（标记）"><a href="#正则表达式-修饰符（标记）" class="headerlink" title="正则表达式 - 修饰符（标记）"></a>正则表达式 - 修饰符（标记）</h2><p><strong>标记也称为修饰符，正则表达式的标记用于指定额外的匹配策略</strong>。</p>
+<p>标记不写在正则表达式里，标记位于表达式之外，格式如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;pattern&#x2F;flags<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>下表列出了正则表达式常用的修饰符：</p>
+<table>
+<thead>
+<tr>
+<th align="left">修饰符</th>
+<th align="left">含义</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">i</td>
+<td align="left">ignore - 不区分大小写</td>
+<td align="left">将匹配设置为不区分大小写，搜索时不区分大小写: A 和 a 没有区别。</td>
+</tr>
+<tr>
+<td align="left">g</td>
+<td align="left">global - 全局匹配</td>
+<td align="left">查找所有的匹配项。</td>
+</tr>
+<tr>
+<td align="left">m</td>
+<td align="left">multi line - 多行匹配</td>
+<td align="left">使边界字符 <strong>^</strong> 和 <strong>$</strong> 匹配每一行的开头和结尾，记住是多行，而不是整个字符串的开头和结尾。</td>
+</tr>
+<tr>
+<td align="left">s</td>
+<td align="left">特殊字符圆点 <strong>.</strong> 中包含换行符 <strong>\n</strong></td>
+<td align="left">默认情况下的圆点 <strong>.</strong> 是匹配除换行符 <strong>\n</strong> 之外的任何字符，加上 <strong>s</strong> 修饰符之后, <strong>.</strong> 中包含换行符 \n。</td>
+</tr>
+</tbody></table>
+<h2 id="正则表达式-元字符"><a href="#正则表达式-元字符" class="headerlink" title="正则表达式 - 元字符"></a>正则表达式 - 元字符</h2><p>下表包含了元字符的完整列表以及它们在正则表达式上下文中的行为：</p>
+<table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">\</td>
+<td align="left">将下一个字符标记为一个特殊字符、或一个原义字符、或一个 向后引用、或一个八进制转义符。例如，’n’ 匹配字符 “n”。’\n’ 匹配一个换行符。序列 ‘\‘ 匹配 “&quot; 而 “(“ 则匹配 “(“。</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 ‘\n’ 或 ‘\r’ 之后的位置。</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="left">匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 ‘\n’ 或 ‘\r’ 之前的位置。</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">匹配前面的子表达式零次或多次。例如，zo* 能匹配 “z” 以及 “zoo”。* 等价于{0,}。</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">匹配前面的子表达式一次或多次。例如，’zo+’ 能匹配 “zo” 以及 “zoo”，但不能匹配 “z”。+ 等价于 {1,}。</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">匹配前面的子表达式零次或一次。例如，”do(es)?” 可以匹配 “do” 或 “does” 。? 等价于 {0,1}。</td>
+</tr>
+<tr>
+<td align="left">{n}</td>
+<td align="left">n 是一个非负整数。匹配确定的 n 次。例如，’o{2}’ 不能匹配 “Bob” 中的 ‘o’，但是能匹配 “food” 中的两个 o。</td>
+</tr>
+<tr>
+<td align="left">{n,}</td>
+<td align="left">n 是一个非负整数。至少匹配n 次。例如，’o{2,}’ 不能匹配 “Bob” 中的 ‘o’，但能匹配 “foooood” 中的所有 o。’o{1,}’ 等价于 ‘o+’。’o{0,}’ 则等价于 ‘o*’。</td>
+</tr>
+<tr>
+<td align="left">{n,m}</td>
+<td align="left">m 和 n 均为非负整数，其中n &lt;&#x3D; m。最少匹配 n 次且最多匹配 m 次。例如，”o{1,3}” 将匹配 “fooooood” 中的前三个 o。’o{0,1}’ 等价于 ‘o?’。请注意在逗号和两个数之间不能有空格。</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">当该字符紧跟在任何一个其他限制符 (*, +, ?, {n}, {n,}, {n,m}) 后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串 “oooo”，’o+?’ 将匹配单个 “o”，而 ‘o+’ 将匹配所有 ‘o’。</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td align="left">匹配除换行符（\n、\r）之外的任何单个字符。要匹配包括 ‘\n’ 在内的任何字符，请使用像”<strong>(.|\n)</strong>“的模式。</td>
+</tr>
+<tr>
+<td align="left">(pattern)</td>
+<td align="left">匹配 pattern 并获取这一匹配。所获取的匹配可以从产生的 Matches 集合得到，在VBScript 中使用 SubMatches 集合，在JScript 中则使用 $0…$9 属性。要匹配圆括号字符，请使用 ‘(‘ 或 ‘)‘。</td>
+</tr>
+<tr>
+<td align="left">(?:pattern)</td>
+<td align="left">匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用 “或” 字符 (|) 来组合一个模式的各个部分是很有用。例如， ‘industr(?:y|ies) 就是一个比 ‘industry|industries’ 更简略的表达式。</td>
+</tr>
+<tr>
+<td align="left">(?&#x3D;pattern)</td>
+<td align="left">正向肯定预查（look ahead positive assert），在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，”Windows(?&#x3D;95|98|NT|2000)”能匹配”Windows2000”中的”Windows”，但不能匹配”Windows3.1”中的”Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td>
+</tr>
+<tr>
+<td align="left">(?!pattern)</td>
+<td align="left">正向否定预查(negative assert)，在任何不匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如”Windows(?!95|98|NT|2000)”能匹配”Windows3.1”中的”Windows”，但不能匹配”Windows2000”中的”Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td>
+</tr>
+<tr>
+<td align="left">(?&lt;&#x3D;pattern)</td>
+<td align="left">反向(look behind)肯定预查，与正向肯定预查类似，只是方向相反。例如，”&#96;(?&lt;&#x3D;95</td>
+</tr>
+<tr>
+<td align="left">(?&lt;!pattern)</td>
+<td align="left">反向否定预查，与正向否定预查类似，只是方向相反。例如”&#96;(?&lt;!95</td>
+</tr>
+<tr>
+<td align="left">x|y</td>
+<td align="left">匹配 x 或 y。例如，’z|food’ 能匹配 “z” 或 “food”。’(z|f)ood’ 则匹配 “zood” 或 “food”。</td>
+</tr>
+<tr>
+<td align="left">[xyz]</td>
+<td align="left">字符集合。匹配所包含的任意一个字符。例如， ‘[abc]’ 可以匹配 “plain” 中的 ‘a’。</td>
+</tr>
+<tr>
+<td align="left">[^xyz]</td>
+<td align="left">负值字符集合。匹配未包含的任意字符。例如， ‘[^abc]’ 可以匹配 “plain” 中的’p’、’l’、’i’、’n’。</td>
+</tr>
+<tr>
+<td align="left">[a-z]</td>
+<td align="left">字符范围。匹配指定范围内的任意字符。例如，’[a-z]’ 可以匹配 ‘a’ 到 ‘z’ 范围内的任意小写字母字符。</td>
+</tr>
+<tr>
+<td align="left">[^a-z]</td>
+<td align="left">负值字符范围。匹配任何不在指定范围内的任意字符。例如，’[^a-z]’ 可以匹配任何不在 ‘a’ 到 ‘z’ 范围内的任意字符。</td>
+</tr>
+<tr>
+<td align="left">\b</td>
+<td align="left">匹配一个单词边界，也就是指单词和空格间的位置。例如， ‘er\b’ 可以匹配”never” 中的 ‘er’，但不能匹配 “verb” 中的 ‘er’。</td>
+</tr>
+<tr>
+<td align="left">\B</td>
+<td align="left">匹配非单词边界。’er\B’ 能匹配 “verb” 中的 ‘er’，但不能匹配 “never” 中的 ‘er’。</td>
+</tr>
+<tr>
+<td align="left">\cx</td>
+<td align="left">匹配由 x 指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 ‘c’ 字符。</td>
+</tr>
+<tr>
+<td align="left">\d</td>
+<td align="left">匹配一个数字字符。等价于 [0-9]。</td>
+</tr>
+<tr>
+<td align="left">\D</td>
+<td align="left">匹配一个非数字字符。等价于 [ ^0-9]。</td>
+</tr>
+<tr>
+<td align="left">\f</td>
+<td align="left">匹配一个换页符。等价于 \x0c 和 \cL。</td>
+</tr>
+<tr>
+<td align="left">\n</td>
+<td align="left">匹配一个换行符。等价于 \x0a 和 \cJ。</td>
+</tr>
+<tr>
+<td align="left">\r</td>
+<td align="left">匹配一个回车符。等价于 \x0d 和 \cM。</td>
+</tr>
+<tr>
+<td align="left">\s</td>
+<td align="left">匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td align="left">\S</td>
+<td align="left">匹配任何非空白字符。等价于 [ ^ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td align="left">匹配一个制表符。等价于 \x09 和 \cI。</td>
+</tr>
+<tr>
+<td align="left">\v</td>
+<td align="left">匹配一个垂直制表符。等价于 \x0b 和 \cK。</td>
+</tr>
+<tr>
+<td align="left">\w</td>
+<td align="left">匹配字母、数字、下划线。等价于’[A-Za-z0-9_]’。</td>
+</tr>
+<tr>
+<td align="left">\W</td>
+<td align="left">匹配非字母、数字、下划线。等价于   ‘[ ^A-Za-z0-9_]’。</td>
+</tr>
+<tr>
+<td align="left">\xn</td>
+<td align="left">匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，’\x41’ 匹配 “A”。’\x041’ 则等价于 ‘\x04’ &amp; “1”。正则表达式中可以使用 ASCII 编码。</td>
+</tr>
+<tr>
+<td align="left">\num</td>
+<td align="left">匹配 num，其中 num 是一个正整数。对所获取的匹配的引用。例如，’(.)\1’ 匹配两个连续的相同字符。</td>
+</tr>
+<tr>
+<td align="left">\n</td>
+<td align="left">标识一个八进制转义值或一个向后引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值。</td>
+</tr>
+<tr>
+<td align="left">\nm</td>
+<td align="left">标识一个八进制转义值或一个向后引用。如果 \nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm。</td>
+</tr>
+<tr>
+<td align="left">\nml</td>
+<td align="left">如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml。</td>
+</tr>
+<tr>
+<td align="left">\un</td>
+<td align="left">匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)。</td>
+</tr>
+</tbody></table>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><pre class="line-numbers language-none"><code class="language-none">var str &#x3D; &quot;abcd test@runoob.com 1234&quot;; 
+var patt1 &#x3D; &#x2F;\b[\w.%+-]+@[\w.-]+\.[a-zA-Z]&#123;2,6&#125;\b&#x2F;g; 
+document.write(str.match(patt1));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>以下标记的文本是获得的匹配的表达式：</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/3D635D20-FE65-420F-9E79-5B4F1E7E7374.jpg" alt="img"></p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/regexp-metachar-2020-11-23.png" alt="img"></p>
+<h2 id="正则表达式-运算符优先级"><a href="#正则表达式-运算符优先级" class="headerlink" title="正则表达式 - 运算符优先级"></a>正则表达式 - 运算符优先级</h2><p>正则表达式从左到右进行计算，并遵循优先级顺序，这与算术表达式非常类似。</p>
+<p>相同优先级的从左到右进行运算，不同优先级的运算先高后低。下表从最高到最低说明了各种正则表达式运算符的优先级顺序：</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">\</td>
+<td align="left">转义符</td>
+</tr>
+<tr>
+<td align="left">(), (?:), (?&#x3D;), []</td>
+<td align="left">圆括号和方括号</td>
+</tr>
+<tr>
+<td align="left">*, +, ?, {n}, {n,}, {n,m}</td>
+<td align="left">限定符</td>
+</tr>
+<tr>
+<td align="left">^, $, \任何元字符、任何字符</td>
+<td align="left">定位点和序列（即：位置和顺序）</td>
+</tr>
+<tr>
+<td align="left">|</td>
+<td align="left">替换，”或”操作 字符具有高于替换运算符的优先级，使得”m|food”匹配”m”或”food”。若要匹配”mood”或”food”，请使用括号创建子表达式，从而产生”(m|f)ood”。</td>
+</tr>
+</tbody></table>
+<h2 id="正则表达式-匹配规则"><a href="#正则表达式-匹配规则" class="headerlink" title="正则表达式 - 匹配规则"></a>正则表达式 - 匹配规则</h2><h3 id="基本模式匹配"><a href="#基本模式匹配" class="headerlink" title="基本模式匹配"></a>基本模式匹配</h3><p>一切从最基本的开始。模式，是正则表达式最基本的元素，它们是一组描述字符串特征的字符。模式可以很简单，由普通的字符串组成，也可以非常复杂，往往用特殊的字符表示一个范围内的字符、重复出现，或表示上下文。例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">^once<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个模式包含一个特殊的字符 <strong>^</strong>，表示该模式只匹配那些以 <strong>once</strong> 开头的字符串。例如该模式与字符串 <strong>“once upon a time”</strong> 匹配，与 <strong>“There once was a man from NewYork”</strong> 不匹配。正如如 <strong>^</strong> 符号表示开头一样，**$** 符号用来匹配那些以给定模式结尾的字符串。</p>
+<pre class="line-numbers language-none"><code class="language-none">bucket$<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个模式与 <strong>“Who kept all of this cash in a bucket”</strong> 匹配，与 <strong>“buckets”</strong> 不匹配。字符 <strong>^</strong> 和 <strong>$</strong> 同时使用时，表示精确匹配（字符串与模式一样）。例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">^bucket$<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>只匹配字符串 **”bucket”**。如果一个模式不包括 <strong>^</strong> 和 **$**，那么它与任何包含该模式的字符串匹配。例如模式：</p>
+<pre class="line-numbers language-none"><code class="language-none">once<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>与字符串</p>
+<pre class="line-numbers language-none"><code class="language-none">There once was a man from NewYork
+Who kept all of his cash in a bucket.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>是匹配的。</p>
+<p>在该模式中的字母 <strong>(o-n-c-e)</strong> 是字面的字符，也就是说，他们表示该字母本身，数字也是一样的。其他一些稍微复杂的字符，如标点符号和白字符（空格、制表符等），要用到转义序列。所有的转义序列都用反斜杠 *<em>*</em> 打头。制表符的转义序列是 <strong>\t</strong>。所以如果我们要检测一个字符串是否以制表符开头，可以用这个模式：</p>
+<pre class="line-numbers language-none"><code class="language-none">^\t <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>类似的，用 <strong>\n</strong> 表示**”新行”<strong>，</strong>\r** 表示回车。其他的特殊符号，可以用在前面加上反斜杠，如反斜杠本身用 <strong>\</strong> 表示，句号 <strong>.</strong> 用 <strong>.</strong> 表示，以此类推。</p>
+<h3 id="字符簇"><a href="#字符簇" class="headerlink" title="字符簇"></a>字符簇</h3><p>在 INTERNET 的程序中，正则表达式通常用来验证用户的输入。当用户提交一个 FORM 以后，要判断输入的电话号码、地址、EMAIL 地址、信用卡号码等是否有效，用普通的基于字面的字符是不够的。</p>
+<p>所以要用一种更自由的描述我们要的模式的办法，它就是字符簇。要建立一个表示所有元音字符的字符簇，就把所有的元音字符放在一个方括号里：</p>
+<pre class="line-numbers language-none"><code class="language-none">[AaEeIiOoUu]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个模式与任何元音字符匹配，但只能表示一个字符。用连字号可以表示一个字符的范围，如：</p>
+<pre class="line-numbers language-none"><code class="language-none">[a-z] &#x2F;&#x2F; 匹配所有的小写字母 
+[A-Z] &#x2F;&#x2F; 匹配所有的大写字母 
+[a-zA-Z] &#x2F;&#x2F; 匹配所有的字母 
+[0-9] &#x2F;&#x2F; 匹配所有的数字 
+[0-9\.\-] &#x2F;&#x2F; 匹配所有的数字，句号和减号 
+[ \f\r\t\n] &#x2F;&#x2F; 匹配所有的白字符<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>同样的，这些也只表示一个字符，这是一个非常重要的。如果要匹配一个由一个小写字母和一位数字组成的字符串，比如 “z2”、”t6” 或 “g7”，但不是 “ab2”、”r2d3” 或 “b52” 的话，用这个模式：</p>
+<pre class="line-numbers language-none"><code class="language-none">^[a-z][0-9]$<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>尽管 <strong>[a-z]</strong> 代表 26 个字母的范围，但在这里它只能与第一个字符是小写字母的字符串匹配。</p>
+<p>前面曾经提到^表示字符串的开头，但它还有另外一个含义。当在一组方括号里使用 <strong>^</strong> 时，它表示”<strong>非</strong>“或”<strong>排除</strong>“的意思，常常用来剔除某个字符。还用前面的例子，我们要求第一个字符不能是数字：</p>
+<pre class="line-numbers language-none"><code class="language-none">^[^0-9][0-9]$<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个模式与 “&amp;5”、”g7”及”-2” 是匹配的，但与 “12”、”66” 是不匹配的。下面是几个排除特定字符的例子：</p>
+<pre class="line-numbers language-none"><code class="language-none">[^a-z] &#x2F;&#x2F;除了小写字母以外的所有字符 
+[^\\\&#x2F;\^] &#x2F;&#x2F;除了(\)(&#x2F;)(^)之外的所有字符 
+[^\&quot;\&#39;] &#x2F;&#x2F;除了双引号(&quot;)和单引号(&#39;)之外的所有字符<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>特殊字符 <strong>.</strong>(点，句号)在正则表达式中用来表示除了”新行”之外的所有字符。所以模式 <strong>^.5$</strong> 与任何两个字符的、以数字5结尾和以其他非”新行”字符开头的字符串匹配。模式 <strong>.</strong> 可以匹配任何字符串，<strong>换行符（\n、\r）除外</strong>。</p>
+<p>PHP的正则表达式有一些内置的通用字符簇，列表如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">字符簇</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">[[:alpha:]]</td>
+<td align="left">任何字母</td>
+</tr>
+<tr>
+<td align="left">[[:digit:]]</td>
+<td align="left">任何数字</td>
+</tr>
+<tr>
+<td align="left">[[:alnum:]]</td>
+<td align="left">任何字母和数字</td>
+</tr>
+<tr>
+<td align="left">[[:space:]]</td>
+<td align="left">任何空白字符</td>
+</tr>
+<tr>
+<td align="left">[[:upper:]]</td>
+<td align="left">任何大写字母</td>
+</tr>
+<tr>
+<td align="left">[[:lower:]]</td>
+<td align="left">任何小写字母</td>
+</tr>
+<tr>
+<td align="left">[[:punct:]]</td>
+<td align="left">任何标点符号</td>
+</tr>
+<tr>
+<td align="left">[[:xdigit:]]</td>
+<td align="left">任何16进制的数字，相当于[0-9a-fA-F]</td>
+</tr>
+</tbody></table>
+<h3 id="确定重复出现"><a href="#确定重复出现" class="headerlink" title="确定重复出现"></a>确定重复出现</h3><p>到现在为止，你已经知道如何去匹配一个字母或数字，但更多的情况下，可能要匹配一个单词或一组数字。一个单词有若干个字母组成，一组数字有若干个单数组成。跟在字符或字符簇后面的花括号({})用来确定前面的内容的重复出现的次数。</p>
+<table>
+<thead>
+<tr>
+<th align="left">字符簇</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">^[a-zA-Z_]$</td>
+<td align="left">所有的字母和下划线</td>
+</tr>
+<tr>
+<td align="left">^[[:alpha:]]{3}$</td>
+<td align="left">所有的3个字母的单词</td>
+</tr>
+<tr>
+<td align="left">^a$</td>
+<td align="left">字母a</td>
+</tr>
+<tr>
+<td align="left">^a{4}$</td>
+<td align="left">aaaa</td>
+</tr>
+<tr>
+<td align="left">^a{2,4}$</td>
+<td align="left">aa,aaa或aaaa</td>
+</tr>
+<tr>
+<td align="left">^a{1,3}$</td>
+<td align="left">a,aa或aaa</td>
+</tr>
+<tr>
+<td align="left">^a{2,}$</td>
+<td align="left">包含多于两个a的字符串</td>
+</tr>
+<tr>
+<td align="left">^a{2,}</td>
+<td align="left">如：aardvark和aaab，但apple不行</td>
+</tr>
+<tr>
+<td align="left">a{2,}</td>
+<td align="left">如：baad和aaa，但Nantucket不行</td>
+</tr>
+<tr>
+<td align="left">\t{2}</td>
+<td align="left">两个制表符</td>
+</tr>
+<tr>
+<td align="left">.{2}</td>
+<td align="left">所有的两个字符</td>
+</tr>
+</tbody></table>
+<p>这些例子描述了花括号的三种不同的用法。一个数字 <strong>{x}</strong> 的意思是<strong>前面的字符或字符簇只出现x次</strong> ；一个数字加逗号 <strong>{x,}</strong> 的意思是<strong>前面的内容出现x或更多的次数</strong> ；两个数字用逗号分隔的数字 <strong>{x,y}</strong> 表示 <strong>前面的内容至少出现x次，但不超过y次</strong>。我们可以把模式扩展到更多的单词或数字：</p>
+<pre class="line-numbers language-none"><code class="language-none">^[a-zA-Z0-9_]&#123;1,&#125;$      &#x2F;&#x2F; 所有包含一个以上的字母、数字或下划线的字符串 
+^[1-9][0-9]&#123;0,&#125;$        &#x2F;&#x2F; 所有的正整数 
+^\-&#123;0,1&#125;[0-9]&#123;1,&#125;$      &#x2F;&#x2F; 所有的整数 
+^[-]?[0-9]+\.?[0-9]+$   &#x2F;&#x2F; 所有的浮点数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后一个例子不太好理解，是吗？这么看吧：以一个可选的负号 (<strong>[-]?</strong>) 开头 (<strong>^</strong>)、跟着1个或更多的数字(<strong>[0-9]+</strong>)、和一个小数点(<strong>.</strong>)再跟上1个或多个数字**([0-9]+<strong>)，并且后面没有其他任何东西(</strong>$**)。下面你将知道能够使用的更为简单的方法。</p>
+<p>特殊字符 <strong>?</strong> 与 <strong>{0,1}</strong> 是相等的，它们都代表着： <strong>0个或1个前面的内容</strong> 或 <strong>前面的内容是可选的</strong> 。所以刚才的例子可以简化为：</p>
+<pre class="line-numbers language-none"><code class="language-none">^\-?[0-9]&#123;1,&#125;\.?[0-9]&#123;1,&#125;$<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>特殊字符 ***** 与 <strong>{0,}</strong> 是相等的，它们都代表着 <strong>0 个或多个前面的内容</strong> 。最后，字符 <strong>+</strong> 与 <strong>{1,}</strong> 是相等的，表示 <strong>1 个或多个前面的内容</strong> ，所以上面的4个例子可以写成：</p>
+<pre class="line-numbers language-none"><code class="language-none">^[a-zA-Z0-9_]+$      &#x2F;&#x2F; 所有包含一个以上的字母、数字或下划线的字符串 
+^[1-9][0-9]*$        &#x2F;&#x2F; 所有的正整数 
+^\-?[0-9]+$          &#x2F;&#x2F; 所有的整数 
+^[-]?[0-9]+(\.[0-9]+)?$ &#x2F;&#x2F; 所有的浮点数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="正则表达式-示例"><a href="#正则表达式-示例" class="headerlink" title="正则表达式 - 示例"></a>正则表达式 - 示例</h2><h3 id="简单表达式"><a href="#简单表达式" class="headerlink" title="简单表达式"></a>简单表达式</h3><p>正则表达式的最简单形式是在搜索字符串中匹配其本身的单个普通字符。例如，单字符模式，如 A，不论出现在搜索字符串中的何处，它总是匹配字母 A。下面是一些单字符正则表达式模式的示例：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;a&#x2F;
+&#x2F;7&#x2F;
+&#x2F;M&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>可以将许多单字符组合起来以形成大的表达式。例如，以下正则表达式组合了单字符表达式：a、7 和 M。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;a7M&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>请注意，没有串联运算符。只须在一个字符后面键入另一个字符。</p>
+<h3 id="字符匹配"><a href="#字符匹配" class="headerlink" title="字符匹配"></a>字符匹配</h3><p>点号 <strong>.</strong> 匹配字符串中的各种打印或非打印字符，除了换行符 <strong>\n</strong> 和 <strong>\r</strong>。下面的正则表达式匹配 aac、abc、acc、adc 等等，以及 a1c、a2c、a-c 和 a#c：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;a.c&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>若要匹配包含文件名的字符串，而句点 <strong>.</strong> 是输入字符串的组成部分，请在正则表达式中的句点前面加反斜杠 *<em>*</em> 字符。举例来说明，下面的正则表达式匹配 filename.ext：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;filename\.ext&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这些表达式只让您匹配”任何”单个字符。可能需要匹配列表中的特定字符组。例如，可能需要查找用数字表示的章节标题（Chapter 1、Chapter 2 等等）。</p>
+<p>用户名可以包含以下几种字符：</p>
+<ul>
+<li>1、26 个大小写英文字母表示为 <strong>a-zA-Z</strong>。</li>
+<li>2、数字表示为 <strong>0-9</strong>。</li>
+<li>3、下划线表示为 **_**。</li>
+<li>4、中划线表示为 **-**。</li>
+</ul>
+<p>用户名由若干个字母、数字、下划线和中划线组成，所以需要用到 <strong>+</strong> 表示 <strong>1</strong> 次或多次出现。</p>
+<p>根据以上条件得出用户名的表达式可以为：</p>
+<pre class="line-numbers language-none"><code class="language-none">[a-zA-Z0-9_-]+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>实例</p>
+<p>var str &#x3D; “abc123-<em>def”; var patt &#x3D; &#x2F;[a-zA-Z0-9</em>-]+&#x2F;; document.write(str.match(patt));</p>
+<p>以下标记的文本是获得的匹配的表达式：</p>
+<p><strong>abc123-_def</strong></p>
+<p>如果不需要中划线则为：</p>
+<pre class="line-numbers language-none"><code class="language-none">[a-zA-Z0-9_]+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p>var str &#x3D; “abc123def”; var str2 &#x3D; “abc123_def”; var patt &#x3D; &#x2F;[a-zA-Z0-9_]+&#x2F;; document.write(str.match(patt)); document.write(str2.match(patt));</p>
+<p>以下标记的文本是获得的匹配的表达式：</p>
+<p><strong>abc123def</strong><br><strong>abc123_def</strong></p>
+<p>匹配 HTML 标签及内容</p>
+<p>以下正则表达式用于匹配 iframe 标签：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&lt;iframe(([\s\S])*?)&lt;\&#x2F;iframe&gt;&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其他标签的匹配可以替换 <strong>iframe</strong> 。</p>
+<p>匹配 id&#x3D;”mydiv” 的 div 标签：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&lt;div id&#x3D;&quot;mydiv&quot;(([\s\S])*?)&lt;\&#x2F;div&gt;&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>匹配所有 img 标签：</p>
+<h3 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h3><p>&#x2F;&lt;img.*?src&#x3D;”(.*?)”.*?/?&gt;&#x2F;gi</p>
+<h3 id="中括号表达式"><a href="#中括号表达式" class="headerlink" title="中括号表达式"></a>中括号表达式</h3><p>若要创建匹配字符组的一个列表，请在方括号 <strong>[ ]</strong> 内放置一个或更多单个字符。当字符括在中括号内时，该列表称为”中括号表达式”。与在任何别的位置一样，普通字符在中括号内表示其本身，即，它在输入文本中匹配一次其本身。大多数特殊字符在中括号表达式内出现时失去它们的意义。不过也有一些例外，如：</p>
+<ul>
+<li>如果 <strong>]</strong> 字符不是第一项，它结束一个列表。若要匹配列表中的 <strong>]</strong> 字符，请将它放在第一位，紧跟在开始 <strong>[</strong> 后面。</li>
+</ul>
+<p>括在中括号表达式中的字符只匹配处于正则表达式中该位置的单个字符。以下正则表达式匹配 Chapter 1、Chapter 2、Chapter 3、Chapter 4 和 Chapter 5：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;Chapter [12345]&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>请注意，单词 Chapter 和后面的空格的位置相对于中括号内的字符是固定的。中括号表达式指定的只是匹配紧跟在单词 Chapter 和空格后面的单个字符位置的字符集。这是第九个字符位置。</p>
+<p>若要使用范围代替字符本身来表示匹配字符组，请使用连字符 <strong>-</strong> 将范围中的开始字符和结束字符分开。单个字符的字符值确定范围内的相对顺序。下面的正则表达式包含范围表达式，该范围表达式等效于上面显示的中括号中的列表。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;Chapter [1-5]&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>当以这种方式指定范围时，开始值和结束值两者都包括在范围内。注意，还有一点很重要，按 Unicode 排序顺序，开始值必须在结束值的前面。</p>
+<p>若要在中括号表达式中包括连字符，请采用下列方法之一：</p>
+<ul>
+<li><p>用反斜杠将它转义：</p>
+<pre class="line-numbers language-none"><code class="language-none">[\-]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>将连字符放在中括号列表的开始或结尾。下面的表达式匹配所有小写字母和连字符：</p>
+<pre class="line-numbers language-none"><code class="language-none">[-a-z]
+[a-z-]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>创建一个范围，在该范围中，开始字符值小于连字符，而结束字符值等于或大于连字符。下面的两个正则表达式都满足这一要求：</p>
+<pre class="line-numbers language-none"><code class="language-none">[!--]
+[!-~]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<p>若要查找不在列表或范围内的所有字符，请将插入符号 <strong>^</strong> 放在列表的开头。如果插入字符出现在列表中的其他任何位置，则它匹配其本身。下面的正则表达式匹配1、2、3、4 或 5 之外的任何数字和字符：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;Chapter [^12345]&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在上面的示例中，表达式在第九个位置匹配 1、2、3、4 或 5 之外的任何数字和字符。这样，例如，Chapter 7 就是一个匹配项，Chapter 9 也是一个匹配项。</p>
+<p>上面的表达式可以使用连字符 <strong>-</strong> 来表示：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;Chapter [^1-5]&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>中括号表达式的典型用途是指定任何大写或小写字母或任何数字的匹配。下面的表达式指定这样的匹配：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;[A-Za-z0-9]&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="替换和分组"><a href="#替换和分组" class="headerlink" title="替换和分组"></a>替换和分组</h3><p>替换使用 <strong>|</strong> 字符来允许在两个或多个替换选项之间进行选择。例如，可以扩展章节标题正则表达式，以返回比章标题范围更广的匹配项。但是，这并不象您可能认为的那样简单。替换匹配 <strong>|</strong> 字符任一侧最大的表达式。</p>
+<p>您可能认为，下面的表达式匹配出现在行首和行尾、后面跟一个或两个数字的 Chapter 或 Section：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;^Chapter|Section [1-9][0-9]&#123;0,1&#125;$&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>很遗憾，上面的正则表达式要么匹配行首的单词 Chapter，要么匹配行尾的单词 Section 及跟在其后的任何数字。如果输入字符串是 Chapter 22，那么上面的表达式只匹配单词 Chapter。如果输入字符串是 Section 22，那么该表达式匹配 Section 22。</p>
+<p>若要使正则表达式更易于控制，可以使用括号来限制替换的范围，即，确保它只应用于两个单词 Chapter 和 Section。但是，括号也用于创建子表达式，并可能捕获它们以供以后使用，这一点在有关反向引用的那一节讲述。通过在上面的正则表达式的适当位置添加括号，就可以使该正则表达式匹配 Chapter 1 或 Section 3。</p>
+<p>下面的正则表达式使用括号来组合 Chapter 和 Section，以便表达式正确地起作用：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;^(Chapter|Section) [1-9][0-9]&#123;0,1&#125;$&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>尽管这些表达式正常工作，但 Chapter|Section 周围的括号还将捕获两个匹配字中的任一个供以后使用。由于在上面的表达式中只有一组括号，因此，只有一个被捕获的”子匹配项”。</p>
+<p>在上面的示例中，您只需要使用括号来组合单词 Chapter 和 Section 之间的选择。若要防止匹配被保存以备将来使用，请在括号内正则表达式模式之前放置 **?:**。下面的修改提供相同的能力而不保存子匹配项：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;^(?:Chapter|Section) [1-9][0-9]&#123;0,1&#125;$&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>除 <strong>?:</strong> 元字符外，两个其他非捕获元字符创建被称为”预测先行”匹配的某些内容。正向预测先行使用 <strong>?&#x3D;</strong> 指定，它匹配处于括号中匹配正则表达式模式的起始点的搜索字符串。反向预测先行使用 <strong>?!</strong> 指定，它匹配处于与正则表达式模式不匹配的字符串的起始点的搜索字符串。</p>
+<p>例如，假设您有一个文档，该文档包含指向 Windows 3.1、Windows 95、Windows 98 和 Windows NT 的引用。再进一步假设，您需要更新该文档，将指向 Windows 95、Windows 98 和 Windows NT 的所有引用更改为 Windows 2000。下面的正则表达式（这是一个正向预测先行的示例）匹配 Windows 95、Windows 98 和 Windows NT：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;Windows(?&#x3D;95 |98 |NT )&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>找到一处匹配后，紧接着就在匹配的文本（不包括预测先行中的字符）之后搜索下一处匹配。例如，如果上面的表达式匹配 Windows 98，将在 Windows 之后而不是在 98 之后继续搜索。</p>
+<h3 id="其他示例"><a href="#其他示例" class="headerlink" title="其他示例"></a>其他示例</h3><p>下面列出一些正则表达式示例：</p>
+<table>
+<thead>
+<tr>
+<th align="left">正则表达式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/\b([a-z]+) \1\b/gi</code></td>
+<td align="left">一个单词连续出现的位置。</td>
+</tr>
+<tr>
+<td align="left"><code>/(\w+):\/\/([^/:]+)(:\d*)?([^# ]*)/</code></td>
+<td align="left">匹配一个 URL 解析为协议、域、端口及相对路径。</td>
+</tr>
+<tr>
+<td align="left">&#96;&#x2F;^(?:Chapter</td>
+<td align="left">Section) [1-9][0-9]{0,1}$&#x2F;&#96;</td>
+</tr>
+<tr>
+<td align="left"><code>/[-a-z]/</code></td>
+<td align="left">a 至 z 共 26个 字母再加一个 <strong>-</strong> 号。</td>
+</tr>
+<tr>
+<td align="left"><code>/ter\b/</code></td>
+<td align="left">可匹配 chapter，而不能匹配 terminal。</td>
+</tr>
+<tr>
+<td align="left"><code>/\Bapt/</code></td>
+<td align="left">可匹配 chapter，而不能匹配 aptitude。</td>
+</tr>
+<tr>
+<td align="left">&#96;&#x2F;Windows(?&#x3D;95</td>
+<td align="left">98</td>
+</tr>
+<tr>
+<td align="left"><code>/^\s*$/</code></td>
+<td align="left">匹配空行。</td>
+</tr>
+<tr>
+<td align="left"><code>/\d&#123;2&#125;-\d&#123;5&#125;/</code></td>
+<td align="left">验证由两位数字、一个连字符再加 5 位数字组成的 ID 号。</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;[a-zA-Z]+.*?&gt;([\s\S]*?)&lt;/[a-zA-Z]*?&gt;</code></td>
+<td align="left">匹配 HTML 标记。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">正则表达式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>hello</code></td>
+<td align="left">匹配 {hello}</td>
+</tr>
+<tr>
+<td align="left">&#96;gray</td>
+<td align="left">grey&#96;</td>
+</tr>
+<tr>
+<td align="left">&#96;gr(a</td>
+<td align="left">e)y&#96;</td>
+</tr>
+<tr>
+<td align="left"><code>gr[ae]y</code></td>
+<td align="left">匹配 {gray, grey}</td>
+</tr>
+<tr>
+<td align="left"><code>b[aeiou]bble</code></td>
+<td align="left">匹配 {babble, bebble, bibble, bobble, bubble}</td>
+</tr>
+<tr>
+<td align="left">&#96;[b-chm-pP]at</td>
+<td align="left">ot&#96;</td>
+</tr>
+<tr>
+<td align="left"><code>colou?r</code></td>
+<td align="left">匹配 {color, colour}</td>
+</tr>
+<tr>
+<td align="left">&#96;rege(x(es)?</td>
+<td align="left">xps?)&#96;</td>
+</tr>
+<tr>
+<td align="left"><code>go*gle</code></td>
+<td align="left">匹配 {ggle, gogle, google, gooogle, goooogle, …}</td>
+</tr>
+<tr>
+<td align="left"><code>go+gle</code></td>
+<td align="left">匹配 {gogle, google, gooogle, goooogle, …}</td>
+</tr>
+<tr>
+<td align="left"><code>g(oog)+le</code></td>
+<td align="left">匹配 {google, googoogle, googoogoogle, googoogoogoogle, …}</td>
+</tr>
+<tr>
+<td align="left"><code>z&#123;3&#125;</code></td>
+<td align="left">匹配 {zzz}</td>
+</tr>
+<tr>
+<td align="left"><code>z&#123;3,6&#125;</code></td>
+<td align="left">匹配 {zzz, zzzz, zzzzz, zzzzzz}</td>
+</tr>
+<tr>
+<td align="left"><code>z&#123;3,&#125;</code></td>
+<td align="left">匹配 {zzz, zzzz, zzzzz, …}</td>
+</tr>
+<tr>
+<td align="left"><code>[Bb]rainf\*\*k</code></td>
+<td align="left">匹配 {Brainf<strong>k, brainf</strong>k}</td>
+</tr>
+<tr>
+<td align="left"><code>\d</code></td>
+<td align="left">匹配 {0,1,2,3,4,5,6,7,8,9}</td>
+</tr>
+<tr>
+<td align="left"><code>1\d&#123;10&#125;</code></td>
+<td align="left">匹配 11 个数字，以 1 开头</td>
+</tr>
+<tr>
+<td align="left">&#96;[2-9]</td>
+<td align="left">[12]\d</td>
+</tr>
+<tr>
+<td align="left"><code>Hello\nworld</code></td>
+<td align="left">匹配 Hello 后跟换行符，后跟 world</td>
+</tr>
+<tr>
+<td align="left"><code>\d+(\.\d\d)?</code></td>
+<td align="left">包含一个正整数或包含两位小数位的浮点数。</td>
+</tr>
+<tr>
+<td align="left"><code>[^*@#]</code></td>
+<td align="left">排除 *、@ 、# 三个特色符号</td>
+</tr>
+<tr>
+<td align="left"><code>//[^\r\n]*[\r\n]</code></td>
+<td align="left">匹配 <strong>&#x2F;&#x2F;</strong> 开头的注释</td>
+</tr>
+<tr>
+<td align="left"><code>^dog</code></td>
+<td align="left">匹配以 “dog” 开始</td>
+</tr>
+<tr>
+<td align="left"><code>dog$</code></td>
+<td align="left">匹配以 “dog” 结尾</td>
+</tr>
+<tr>
+<td align="left"><code>^dog$</code></td>
+<td align="left">is exactly “dog”</td>
+</tr>
+</tbody></table>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">John Doe</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2023/03/11/02-09-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">http://example.com/2023/03/11/02-09-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">John Doe</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%9D%82%E8%AE%B0/">
+                                    <span class="chip bg-color">杂记</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/03/11/02.22-Git/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Git">
+                        
+                        <span class="card-title">Git</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            John Doe
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9D%82%E8%AE%B0/">
+                        <span class="chip bg-color">杂记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/03/11/%E4%B8%89%E5%B0%8F/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="三小">
+                        
+                        <span class="card-title">三小</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            John Doe
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">项目</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%B8%89%E5%B0%8F/">
+                        <span class="chip bg-color">三小</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="5352793583"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">John Doe</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">30.5k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blessonism" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:463882408@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=463882408" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 463882408" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
